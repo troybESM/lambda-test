@@ -1,0 +1,31 @@
+#Secret SzMm2kXS9P6Y+088XEGckEKDiRZOcvYRSbXcu+oV
+#Access AKIAJMSD3SLQU2DXPFQQ
+service: lambda-test
+provider:
+  name: aws
+  runtime: nodejs6.10
+functions:
+  hello:
+    handler: handler.hello
+    events:
+     - http:
+         path: /
+         method: get
+  imageResize:
+      handler: images.imageResize
+      events:
+      - http:
+          path: /imageResize
+          method: get
+  id1:
+    handler: sqltest.id1
+    events:
+    - http:
+        path: /id/1
+        method: get
+  id:
+    handler: othersqltest.handler
+    events:
+    - http:
+        path: /id
+        method: get
