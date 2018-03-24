@@ -7,16 +7,15 @@ var pool  = mysql.createPool({
     password : config.dbpassword,
     database : config.dbname
 });
-exports.id1 = (event,context,callback) => {
-    context.callbackWaitsForEmptyEventLoop = false;
-    pool.getConnection(function(err, connection) {       
-        // Use the connection
-        connection.query('SELECT * from games where bggid=1', function (error, results, fields) {
-        // And done with the connection.
-        connection.release();
-        // Handle error after the release.
-        if (error) callback(error);
-        else callback(null,results[0].name);        
-        });
+pool.getConnection(function(err, connection) {       
+    // Use the connection
+    connection.query('SELECT * from games where bggid=1', function (error, results, fields) {
+    // And done with the connection.
+    connection.release();
+    // Handle error after the release.
+    if (error) console.log(error);
+    else {
+        console.log(results);
+    }
     });
-};
+});
